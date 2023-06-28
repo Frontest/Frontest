@@ -1,7 +1,7 @@
 import { RiUserLine } from "react-icons/ri";
 import { SlArrowDown } from "react-icons/sl";
 import { CiMail } from "react-icons/ci";
-import Table from "../Table/TableSection";
+import TableSection from "../Table/TableSection";
 
 const Main = () => {
   return (
@@ -34,7 +34,7 @@ const Main = () => {
           <CiMail className="text-[20px]" />
         </div>
       </div>
-      <Table />
+      <TableSection />
     </main>
   );
 };

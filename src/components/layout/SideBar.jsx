@@ -3,9 +3,11 @@ import { MdOutlineDashboardCustomize } from "react-icons/md";
 import { SlArrowDown } from "react-icons/sl";
 import { HiOutlineUsers } from "react-icons/hi";
 import { TbCreditCard, TbReportSearch } from "react-icons/tb";
-const SideBar = () => {
+import { useSearch } from "../../context/SearchContext";
+const SideBar = ({ onSearchValueChange }) => {
+  const {setSearchValue} = useSearch();
   return (
-    <div className="w-[17%] bg-[--side-bar-bg-color] border border-[--gray-border-color]">
+    <div className="w-[17%] border border-[--gray-border-color] bg-[--side-bar-bg-color]">
       <header className="px-5 pt-5">
         <div className="logo mx-auto mb-[40px] h-[60px] w-[60px] rounded-full bg-[#001eb4]"></div>
         <div className="my-[30px] flex h-[30px] w-full items-center rounded-lg border border-[--gray-border-color] bg-white px-2 py-1 align-middle">
@@ -14,6 +16,7 @@ const SideBar = () => {
             type="text"
             placeholder="جستجو..."
             className="relative top-[-1px] w-full text-[10px] focus:outline-none"
+            onChange={(event) => setSearchValue(event.target.value)}
           />
         </div>
       </header>

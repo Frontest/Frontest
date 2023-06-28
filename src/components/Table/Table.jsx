@@ -1,7 +1,45 @@
-import { useTable } from "react-table";
+import {
+  useTable,
+  useFilters,
+  usePagination,
+  useGlobalFilter,
+} from "react-table";
+import { useSearch } from "../../context/SearchContext";
+import { useEffect } from "react";
 const Table = ({ data, columns }) => {
-  const { getTableProps, getTableBodyProps, headerGroups, rows, prepareRow } =
-    useTable({ columns, data });
+  const { searchValue } = useSearch();
+
+  const filterTypes = {
+    text: (rows, id, filterValue) => {
+      return rows.filter((row) => {
+        const rowValue = row.values[id];
+        return rowValue !== undefined
+          ? String(rowValue)
+              .toLowerCase()
+              .startsWith(String(filterValue).toLowerCase())
+          : true;
+      });
+    },
+  };
+
+  const {
+    getTableProps,
+    getTableBodyProps,
+    headerGroups,
+    rows,
+    prepareRow,
+    state,
+    setGlobalFilter,
+  } = useTable(
+    { columns, data, filterTypes, initialState: { pageIndex: 0 } },
+    useFilters,
+    useGlobalFilter,
+    usePagination
+  );
+
+  useEffect(() => {
+    setGlobalFilter(searchValue);
+  }, [searchValue]);
   return (
     <table className="block w-full " {...getTableProps()}>
       <thead className="block border-y-2 px-[40px] text-[15px]">
@@ -27,7 +65,7 @@ const Table = ({ data, columns }) => {
           return (
             <tr
               {...row.getRowProps()}
-              className="my-[10px] items-center flex rounded-md bg-[#f2f2f2] px-[40px] py-[5px] "
+              className="my-[10px] flex items-center rounded-md bg-[#f2f2f2] px-[40px] py-[5px] "
             >
               {row.cells.map((cell) => (
                 <td {...cell.getCellProps()} className="w-[100%]  text-right ">
