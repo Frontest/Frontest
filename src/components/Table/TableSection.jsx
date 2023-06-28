@@ -1,6 +1,4 @@
 import { useEffect, useMemo, useState } from "react";
-// import UsersData from "../../../mockData.json";
-import { useTable } from "react-table";
 import Table from "./Table";
 import Status from "./Status";
 
@@ -21,8 +19,8 @@ const TableSection = () => {
         Header: "سطح دسترسی",
         accessor: "access",
         Cell: ({ cell: { value } }) => (
-          <div className="h-[30px] rounded-full bg-[#0096c7] text-white flex items-center justify-center">
-            {value}{" "}
+          <div className="flex h-[30px] items-center justify-center rounded-full bg-[#0096c7] text-white">
+            {value}
           </div>
         ),
       },
@@ -34,7 +32,7 @@ const TableSection = () => {
     async function main() {
       const response = await fetch("/mockData.json");
       const data = await response.json();
-      setUsersData(data.slice(0, 8));
+      setUsersData(data);
     }
     main();
   }, []);
