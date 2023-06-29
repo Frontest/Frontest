@@ -1,4 +1,3 @@
-import { useState } from "react";
 import { BiSolidLeftArrowAlt, BiSolidRightArrowAlt } from "react-icons/bi";
 const Pagination = ({
   pagesNumber,
@@ -67,17 +66,3 @@ const Pagination = ({
   );
 };
 export default Pagination;
-
-function summerizePages(pagesNumber) {
-  const array = arrayMaker(pagesNumber).map((number) =>
-    String(number).latin2Persian()
-  );
-  if (array.length < 5) {
-    return array;
-  } else {
-    return [...array.slice(0, 2), "...", ...array.slice(-2)];
-  }
-}
-function arrayMaker(length) {
-  return new Array(length).fill(0).map((_, i) => i + 1);
-}
