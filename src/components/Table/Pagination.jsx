@@ -11,24 +11,52 @@ const Pagination = ({
     gotoPage,
   },
 }) => {
+  let arr = [];
   const buttons = pagesNumber.map((pageLabel, i) => {
-    const shouldSummerize = pagesNumber.length > 4;
-    if (shouldSummerize) {
+    console.log({ currentPage, pagesNumber });
+    const pageNumber = i + 1;
+    if (
+      pageNumber == 1 || //first page
+      pageNumber == currentPage - 1 || // prev page
+      pageNumber == currentPage || //current page
+      pageNumber == currentPage + 1 || //next page
+      pageNumber == pagesNumber.length //last page
+    ) {
+      return (
+        <div
+          className={`mx-[5px] flex h-[30px] w-[30px] cursor-pointer items-center justify-center rounded-xl border border-black ${
+            i + 1 === currentPage && "border-none bg-[#219ebc] text-white"
+          }`}
+          onClick={() => {
+            gotoPage(i);
+          }}
+        >
+          {pageLabel.toString().latin2Persian()}
+        </div>
+      );
     }
-    return (
-      <div
-        className={`mx-[5px] flex h-[30px] w-[30px] cursor-pointer items-center justify-center rounded-xl border border-black ${
-          i + 1 === currentPage && "border-none bg-[#219ebc] text-white"
-        }`}
-        onClick={() => {
-          gotoPage(i);
-        }}
-      >
-        {pageLabel.toString().latin2Persian()}
-      </div>
-    );
   });
-
+  if (buttons.length > 5) {
+    if (currentPage < 9) {
+      buttons[buttons.length - 2] = (
+        <div
+          className={`mx-[5px] flex h-[30px] w-[30px] cursor-pointer items-center justify-center rounded-xl border border-black `}
+        >
+          ...
+        </div>
+      );
+    }
+    if (currentPage > 3) {
+      buttons[1] = (
+        <div
+          className={`mx-[5px] flex h-[30px] w-[30px] cursor-pointer items-center justify-center rounded-xl border border-black`}
+        >
+          ...
+        </div>
+      );
+    }
+  }
+  console.log(arr);
   return (
     <div className="flex select-none">
       <div
