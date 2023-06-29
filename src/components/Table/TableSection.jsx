@@ -9,15 +9,17 @@ const TableSection = () => {
       { Header: "نام", accessor: "name" },
       { Header: "نام خانوادگی", accessor: "lastName" },
       { Header: "داخلی", accessor: "internal" },
-      { Header: "شرکت", accessor: "company" },
+      { Header: "شرکت", accessor: "company", disableSortBy: true },
       {
         Header: "وضعیت",
         accessor: "isActive",
         Cell: ({ cell: { value } }) => <Status status={value} />,
+        disableSortBy: true,
       },
       {
         Header: "سطح دسترسی",
         accessor: "access",
+        disableSortBy: true,
         Cell: ({ cell: { value } }) => (
           <div className="flex h-[30px] items-center justify-center rounded-full bg-[#0096c7] text-white">
             {value}
@@ -38,7 +40,7 @@ const TableSection = () => {
   }, []);
 
   return (
-    <div className="main-table mt-[40px] w-full px-[20px]">
+    <div className="main-table relative mt-[40px] h-[600px] w-full px-[20px]">
       {usersData && <Table columns={columns} data={usersData} />}
     </div>
   );
