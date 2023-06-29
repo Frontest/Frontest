@@ -1,3 +1,17 @@
 @tailwind base;
 @tailwind components;
 @tailwind utilities;
+
+@font-face {
+  font-family: "Vazir";
+  src: url("./../public/vazir-font-v16.1.0/Vazir.ttf") format("truetype");
+  font-weight: normal;
+  font-style: normal;
+}
+:root {
+  --side-bar-bg-color: #edf3ff;
+  --gray-border-color: #e4e8f1;
+}
+* {
+  box-sizing: border-box;
+}

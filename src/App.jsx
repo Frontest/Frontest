@@ -1,8 +1,12 @@
+import Main from "./components/layout/Main";
+import SideBar from "./components/layout/SideBar";
+
 const App = () => {
   return (
-    <h1 className="text-3xl font-bold  underline underline-offset-8">
-      Hello world!
-    </h1>
+    <div dir="rtl" className="flex h-screen flex-row-reverse font-[vazir]">
+      <Main />
+      <SideBar />
+    </div>
   );
 };
 export default App;
