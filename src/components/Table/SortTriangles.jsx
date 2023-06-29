@@ -1,5 +1,5 @@
 import { BsTriangleFill } from "react-icons/bs";
-const SortTriangles = ({ isDesc }) => {
+const SortTriangles = ({ isDesc, isReverse = false }) => {
   let currentStyle = {
     up: "",
     down: "",
@@ -13,6 +13,11 @@ const SortTriangles = ({ isDesc }) => {
   } else if (isDesc === true) {
     currentStyle.down = "text-[#333]";
     currentStyle.up = "text-[#959595]";
+  }
+  if (isReverse) {
+    const tempUp = currentStyle.up;
+    currentStyle.up = currentStyle.down;
+    currentStyle.down = tempUp;
   }
 
   return (

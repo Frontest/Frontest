@@ -59,7 +59,6 @@ const Table = ({ data, columns }) => {
               {...headerGroup.getHeaderGroupProps()}
             >
               {headerGroup.headers.map((column) => {
-                console.log({ c: column.isSorted });
                 return (
                   <th
                     {...column.getHeaderProps(column.getSortByToggleProps())}
@@ -70,7 +69,10 @@ const Table = ({ data, columns }) => {
                     {column.render("Header")}
                     {!column.disableSortBy && (
                       <span className="mr-[5px]">
-                        <SortTriangles isDesc={column.isSortedDesc} />
+                        <SortTriangles
+                          isDesc={column.isSortedDesc}
+                          isReverse={column.id === "internal"}
+                        />
                       </span>
                     )}
                   </th>

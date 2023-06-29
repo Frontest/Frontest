@@ -8,7 +8,11 @@ const TableSection = () => {
     () => [
       { Header: "نام", accessor: "name" },
       { Header: "نام خانوادگی", accessor: "lastName" },
-      { Header: "داخلی", accessor: "internal" },
+      {
+        Header: "داخلی",
+        accessor: "internal",
+        Cell: ({ cell: { value } }) => String(value).latin2Persian(),
+      },
       { Header: "شرکت", accessor: "company", disableSortBy: true },
       {
         Header: "وضعیت",
