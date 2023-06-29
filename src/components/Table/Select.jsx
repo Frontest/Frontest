@@ -1,6 +1,10 @@
-import { SlArrowDown } from "react-icons/sl";
-
-const Select = ({ total, pageSize, currentPage, pageItems }) => {
+const Select = ({
+  total,
+  pageSize,
+  currentPage,
+  pageItems,
+  changePageSize,
+}) => {
   const firstItemNumber = pageSize * (currentPage - 1) + 1;
   return (
     <div className="flex items-center">
@@ -15,8 +19,21 @@ const Select = ({ total, pageSize, currentPage, pageItems }) => {
           .toString()
           .latin2Persian()} مورد`}</p>
       </div>
-      <div class="relative px-[13px] py-[3px] h-[30px] w-[60px] rounded-xl border border-[#939393] flex items-center">
-        <SlArrowDown className="text-[8px] " />
+      <div class="relative  flex h-[30px] w-[60px] items-center rounded-xl border border-[#939393] px-[2px] py-[3px]">
+        <select
+          dir="ltr"
+          className="w-full  bg-transparent focus:outline-none"
+          defaultValue={"8"}
+          onChange={(e) => {
+            changePageSize(+e.target.value);
+          }}
+        >
+
+          <option value="8" disabled></option>
+          <option value="8">8</option>
+          <option value="5">5</option>
+          <option value="3">3</option>
+        </select>
       </div>
     </div>
   );

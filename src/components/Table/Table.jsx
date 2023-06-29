@@ -12,12 +12,13 @@ import Select from "./Select";
 import SortTriangles from "./SortTriangles";
 const Table = ({ data, columns }) => {
   const [pageNumber, setPageNumber] = useState(1);
+  const [userPageSize, setUserPageSize] = useState(8);
   const { searchValue } = useSearch();
+  console.log(userPageSize)
   const {
     getTableProps,
     getTableBodyProps,
     headerGroups,
-    rows,
     prepareRow,
     setGlobalFilter,
     nextPage,
@@ -28,6 +29,7 @@ const Table = ({ data, columns }) => {
     page,
     state: { pageIndex, pageSize },
     gotoPage,
+    setPageSize
   } = useTable(
     {
       columns,
@@ -35,7 +37,7 @@ const Table = ({ data, columns }) => {
       filterTypes,
       initialState: {
         pageIndex: 0,
-        pageSize: 8,
+        pageSize: userPageSize,
         sortBy: [{ id: "name" }, { id: "lastName" }, { id: "company" }],
       },
     },
@@ -44,6 +46,7 @@ const Table = ({ data, columns }) => {
     useSortBy,
     usePagination
   );
+
 
   useEffect(() => {
     setGlobalFilter(searchValue);
@@ -108,6 +111,7 @@ const Table = ({ data, columns }) => {
           currentPage={pageIndex + 1}
           pageSize={pageSize}
           pageItems={page.length}
+          changePageSize={setPageSize}
         />
         <Pagination
           pagesNumber={pageOptions.map((e) => e + 1)}
