@@ -11,6 +11,7 @@
 :root {
   --side-bar-bg-color: #edf3ff;
   --gray-border-color: #e4e8f1;
+  --blue-primary : #1a3be5;
 }
 * {
   box-sizing: border-box;
