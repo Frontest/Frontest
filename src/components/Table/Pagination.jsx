@@ -2,7 +2,6 @@ import { BiSolidLeftArrowAlt, BiSolidRightArrowAlt } from "react-icons/bi";
 const Pagination = ({
   pagesNumber,
   currentPage,
-  pageChanger,
   paginationOptions: {
     nextPage,
     previousPage,
@@ -39,7 +38,6 @@ const Pagination = ({
         }`}
         onClick={(e) => {
           if (canPreviousPage) {
-            pageChanger(currentPage - 1);
             previousPage();
           }
         }}
@@ -55,7 +53,6 @@ const Pagination = ({
         }`}
         onClick={(e) => {
           if (canNextPage) {
-            pageChanger(currentPage + 1);
             nextPage();
           }
         }}

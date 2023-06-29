@@ -11,13 +11,11 @@ import Pagination from "./Pagination";
 import Select from "./Select";
 import SortTriangles from "./SortTriangles";
 const Table = ({ data, columns }) => {
-  const [pageNumber, setPageNumber] = useState(1);
   const { searchValue } = useSearch();
   const {
     getTableProps,
     getTableBodyProps,
     headerGroups,
-    rows,
     prepareRow,
     setGlobalFilter,
     nextPage,
@@ -112,7 +110,6 @@ const Table = ({ data, columns }) => {
         <Pagination
           pagesNumber={pageOptions.map((e) => e + 1)}
           currentPage={pageIndex + 1}
-          pageChanger={setPageNumber}
           paginationOptions={{
             nextPage,
             previousPage,
@@ -125,7 +122,7 @@ const Table = ({ data, columns }) => {
     </>
   );
 };
-export default Table;
+export default memo(Table);
 const filterTypes = {
   text: (rows, id, filterValue) => {
     return rows.filter((row) => {

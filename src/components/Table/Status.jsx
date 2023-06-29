@@ -1,3 +1,5 @@
+import { memo } from "react";
+
 const Status = ({ status }) => {
   return (
     <div className="flex items-center">
@@ -16,4 +18,4 @@ const Status = ({ status }) => {
     </div>
   );
 };
-export default Status;
+export default memo(Status);

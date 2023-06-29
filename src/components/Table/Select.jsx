@@ -1,3 +1,4 @@
+import { memo } from "react";
 import { SlArrowDown } from "react-icons/sl";
 
 const Select = ({ total, pageSize, currentPage, pageItems }) => {
@@ -15,10 +16,10 @@ const Select = ({ total, pageSize, currentPage, pageItems }) => {
           .toString()
           .latin2Persian()} مورد`}</p>
       </div>
-      <div class="relative px-[13px] py-[3px] h-[30px] w-[60px] rounded-xl border border-[#939393] flex items-center">
+      <div class="relative flex h-[30px] w-[60px] items-center rounded-xl border border-[#939393] px-[13px] py-[3px]">
         <SlArrowDown className="text-[8px] " />
       </div>
     </div>
   );
 };
-export default Select;
+export default memo(Select);

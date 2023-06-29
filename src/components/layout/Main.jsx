@@ -2,6 +2,7 @@ import { RiUserLine } from "react-icons/ri";
 import { SlArrowDown } from "react-icons/sl";
 import { CiMail } from "react-icons/ci";
 import TableSection from "../Table/TableSection";
+import { memo } from "react";
 
 const Main = () => {
   return (
@@ -38,4 +39,4 @@ const Main = () => {
     </main>
   );
 };
-export default Main;
+export default memo(Main);
