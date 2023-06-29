@@ -1,11 +1,12 @@
 import { RiUserLine } from "react-icons/ri";
 import { SlArrowDown } from "react-icons/sl";
 import { CiMail } from "react-icons/ci";
+import Table from "../Table/TableSection";
 
 const Main = () => {
   return (
-    <main className="flex-1 bg-white">
-      <div className="flex h-[80px] w-full items-center justify-between px-[42px] shadow-lg">
+    <main className="h-[100vh] flex-1 bg-white">
+      <div className="main-header flex h-[80px] w-full items-center justify-between px-[42px] shadow-lg">
         <div className=" user-info flex items-center">
           <div className="ml-[10px] flex h-[40px] w-[40px] items-center justify-center rounded-full bg-[#f1f1f1]">
             <RiUserLine className="text-[24px]" />
@@ -33,6 +34,7 @@ const Main = () => {
           <CiMail className="text-[20px]" />
         </div>
       </div>
+      <Table />
     </main>
   );
 };
