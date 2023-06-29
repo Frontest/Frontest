@@ -1,3 +1,4 @@
+import { memo } from "react";
 import { BsTriangleFill } from "react-icons/bs";
 const SortTriangles = ({ isDesc, isReverse = false }) => {
   let currentStyle = {
@@ -27,4 +28,4 @@ const SortTriangles = ({ isDesc, isReverse = false }) => {
     </div>
   );
 };
-export default SortTriangles;
+export default memo(SortTriangles);

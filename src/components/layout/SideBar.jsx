@@ -4,7 +4,8 @@ import { SlArrowDown } from "react-icons/sl";
 import { HiOutlineUsers } from "react-icons/hi";
 import { TbCreditCard, TbReportSearch } from "react-icons/tb";
 import { useSearch } from "../../context/SearchContext";
-const SideBar = ({ onSearchValueChange }) => {
+import { memo } from "react";
+const SideBar = () => {
   const {setSearchValue} = useSearch();
   return (
     <div className="w-[17%] border border-[--gray-border-color] bg-[--side-bar-bg-color]">
@@ -43,4 +44,4 @@ const SideBar = ({ onSearchValueChange }) => {
     </div>
   );
 };
-export default SideBar;
+export default memo(SideBar);

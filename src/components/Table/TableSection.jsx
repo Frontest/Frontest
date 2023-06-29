@@ -1,4 +1,4 @@
-import { useEffect, useMemo, useState } from "react";
+import { memo, useEffect, useMemo, useState } from "react";
 import Table from "./Table";
 import Status from "./Status";
 
@@ -49,4 +49,4 @@ const TableSection = () => {
     </div>
   );
 };
-export default TableSection;
+export default memo(TableSection);

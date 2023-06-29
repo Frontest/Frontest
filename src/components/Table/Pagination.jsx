@@ -1,8 +1,8 @@
+import { memo } from "react";
 import { BiSolidLeftArrowAlt, BiSolidRightArrowAlt } from "react-icons/bi";
 const Pagination = ({
   pagesNumber,
   currentPage,
-  pageChanger,
   paginationOptions: {
     nextPage,
     previousPage,
@@ -11,17 +11,16 @@ const Pagination = ({
     gotoPage,
   },
 }) => {
-  let arr = [];
   const buttons = pagesNumber.map((pageLabel, i) => {
-    console.log({ currentPage, pagesNumber });
     const pageNumber = i + 1;
     if (
+      pagesNumber.length < 6 ||
       pageNumber == 1 || //first page
       pageNumber == currentPage - 1 || // prev page
       pageNumber == currentPage || //current page
       pageNumber == currentPage + 1 || //next page
       pageNumber == pagesNumber.length //last page
-    ) {
+    )  {
       return (
         <div
           className={`mx-[5px] flex h-[30px] w-[30px] cursor-pointer items-center justify-center rounded-xl border border-black ${
@@ -37,7 +36,7 @@ const Pagination = ({
     }
   });
   if (buttons.length > 5) {
-    if (currentPage < 9) {
+    if (currentPage < pagesNumber.length  - 2) {
       buttons[buttons.length - 2] = (
         <div
           className={`mx-[5px] flex h-[30px] w-[30px] cursor-pointer items-center justify-center rounded-xl border border-black `}
@@ -56,7 +55,6 @@ const Pagination = ({
       );
     }
   }
-  console.log(arr);
   return (
     <div className="flex select-none">
       <div
@@ -66,10 +64,7 @@ const Pagination = ({
             : "border-black"
         }`}
         onClick={(e) => {
-          if (canPreviousPage) {
-            pageChanger(currentPage - 1);
-            previousPage();
-          }
+          canPreviousPage && previousPage();
         }}
       >
         <BiSolidRightArrowAlt />
@@ -82,10 +77,7 @@ const Pagination = ({
             : "border-black"
         }`}
         onClick={(e) => {
-          if (canNextPage) {
-            pageChanger(currentPage + 1);
-            nextPage();
-          }
+          canNextPage && nextPage();
         }}
       >
         <BiSolidLeftArrowAlt />
@@ -93,4 +85,4 @@ const Pagination = ({
     </div>
   );
 };
-export default Pagination;
+export default memo(Pagination);

@@ -1,3 +1,5 @@
+import { memo } from "react";
+
 const Select = ({
   total,
   pageSize,
@@ -38,4 +40,4 @@ const Select = ({
     </div>
   );
 };
-export default Select;
+export default memo(Select);

@@ -6,15 +6,12 @@ import {
   useSortBy,
 } from "react-table";
 import { useSearch } from "../../context/SearchContext";
-import { useEffect, useState } from "react";
+import { memo, useEffect } from "react";
 import Pagination from "./Pagination";
 import Select from "./Select";
 import SortTriangles from "./SortTriangles";
 const Table = ({ data, columns }) => {
-  const [pageNumber, setPageNumber] = useState(1);
-  const [userPageSize, setUserPageSize] = useState(8);
   const { searchValue } = useSearch();
-  console.log(userPageSize)
   const {
     getTableProps,
     getTableBodyProps,
@@ -29,7 +26,7 @@ const Table = ({ data, columns }) => {
     page,
     state: { pageIndex, pageSize },
     gotoPage,
-    setPageSize
+    setPageSize,
   } = useTable(
     {
       columns,
@@ -37,7 +34,7 @@ const Table = ({ data, columns }) => {
       filterTypes,
       initialState: {
         pageIndex: 0,
-        pageSize: userPageSize,
+        pageSize: 8,
         sortBy: [{ id: "name" }, { id: "lastName" }, { id: "company" }],
       },
     },
@@ -46,7 +43,6 @@ const Table = ({ data, columns }) => {
     useSortBy,
     usePagination
   );
-
 
   useEffect(() => {
     setGlobalFilter(searchValue);
@@ -116,7 +112,6 @@ const Table = ({ data, columns }) => {
         <Pagination
           pagesNumber={pageOptions.map((e) => e + 1)}
           currentPage={pageIndex + 1}
-          pageChanger={setPageNumber}
           paginationOptions={{
             nextPage,
             previousPage,
@@ -129,7 +124,8 @@ const Table = ({ data, columns }) => {
     </>
   );
 };
-export default Table;
+export default memo(Table);
+
 const filterTypes = {
   text: (rows, id, filterValue) => {
     return rows.filter((row) => {
